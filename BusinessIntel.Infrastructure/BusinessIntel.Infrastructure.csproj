@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessIntel.Core\BusinessIntel.Core.csproj" />
+    <ProjectReference Include="..\BusinessIntel.Data\BusinessIntel.Data.csproj" />
+    <ProjectReference Include="..\BusinessIntel.Scraper\BusinessIntel.Scraper.csproj" />
+    <ProjectReference Include="..\BusinessIntel.Shared\BusinessIntel.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+using BusinessIntel.Data.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+
+namespace BusinessIntel.Data.Context;
+
+public sealed class DesignTimeDbContextFactory
+    : IDesignTimeDbContextFactory<AppDbContext>
+{
+    public AppDbContext CreateDbContext(string[] args)
+    {
+        var optionsBuilder =
+            new DbContextOptionsBuilder<AppDbContext>();
+
+        optionsBuilder.UseSqlite(
+            "Data Source=businessintel.db");
+
+        return new AppDbContext(
+            optionsBuilder.Options);
+    }
+}

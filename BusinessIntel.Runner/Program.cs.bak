@@ -1,0 +1,61 @@
+using Microsoft.Playwright;
+using BusinessIntel.Scraper.Maps;
+
+Console.Write("Search Query: ");
+
+var query =
+    Console.ReadLine();
+
+if (string.IsNullOrWhiteSpace(query))
+{
+    query = "restaurants chennai";
+}
+
+using var playwright =
+    await Playwright.CreateAsync();
+
+await using var browser =
+    await playwright.Chromium.LaunchAsync(
+        new()
+        {
+            Headless = false
+        });
+
+var page =
+    await browser.NewPageAsync();
+
+await page.GotoAsync(
+    "https://www.google.com/maps",
+    new()
+    {
+        WaitUntil = WaitUntilState.DOMContentLoaded
+    });
+
+await page.WaitForTimeoutAsync(5000);
+
+var searchBox =
+    page.Locator("input[name='q']");
+
+await searchBox.FillAsync(query);
+
+await searchBox.PressAsync("Enter");
+
+await page.WaitForTimeoutAsync(10000);
+
+var urls =
+    await MapsInfiniteScroller
+        .CollectBusinessesAsync(page);
+
+Console.WriteLine();
+
+Console.WriteLine(
+    $"TOTAL UNIQUE BUSINESSES: {urls.Count}");
+
+File.WriteAllLines(
+    "business_urls.txt",
+    urls);
+
+Console.WriteLine(
+    "Saved business_urls.txt");
+
+Console.ReadLine();
