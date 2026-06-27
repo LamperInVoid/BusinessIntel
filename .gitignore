@@ -1,23 +1,37 @@
+# Build
 bin/
 obj/
 
+# Visual Studio
 .vs/
-.vscode/
-
-*.db
-*.db-journal
-
-business_urls.txt
-
-maps-results.png
-
-playwright-log.txt
-
 *.user
 *.suo
 
-TestResults/
+# Rider
+.idea/
 
-node_modules/
-
+# Logs
 *.log
+
+# Database
+*.db-shm
+*.db-wal
+
+# Debug outputs
+maps-*.png
+maps-*.html
+first-*.html
+google-test.png
+business_urls.txt
+structure.txt
+
+# Temporary exports
+*.csv
+*.json
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# README
+!README.md
